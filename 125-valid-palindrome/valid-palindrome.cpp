@@ -1,28 +1,39 @@
 class Solution {
 public:
-    bool isPalindrome(string str) {
-       int st = 0;
-       int end = str.length() - 1;
-
-        while(st <= end){
-            if(!isalnum(static_cast<unsigned char>(str[st]))){ // checking if the character is alphanumeric
-                st++;
-                continue;
-            }
-
-            if(!isalnum(static_cast<unsigned char> (str[end]))){ // checking if the character is alphanumeric
-                end--;
-                continue;
-            }
-
-            if(tolower(static_cast<unsigned char> (str[st])) != tolower(static_cast<unsigned char> (str[end]))){ // checking if both of them are equal.
-                return false;
-            }
-
-            st++;
-            end--;
-        }
-
+    
+bool isAlphaNum(char c){
+    if( (c >= '0' && c <= '9') || (tolower(c) >= 'a' && tolower(c) <= 'z')){
         return true;
     }
+
+    return false;
+}
+
+
+bool isPalindrome(string str){
+    int st = 0;
+    int end = str.length() - 1;
+
+    while(st <= end){
+        if(!isAlphaNum(str[st])){
+            st++;
+            continue;
+        }
+
+        if(!isAlphaNum(str[end])){
+            end--;
+            continue;
+        }
+
+        if(tolower(str[st]) != tolower(str[end])){
+            return false;
+        }
+
+        st++;
+        end--;
+    }
+
+    return true;
+}
+
 };
