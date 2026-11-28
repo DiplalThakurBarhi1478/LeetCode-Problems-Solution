@@ -1,31 +1,26 @@
 class Solution {
 public:
-    string trim(string& s){
-
-        auto is_space = [](unsigned char ch){return isspace(ch);};
-
-        s.erase(find_if_not(s.rbegin(), s.rend(), is_space).base(), s.end());
-
-        s.erase(s.begin(), find_if_not(s.begin(), s.end(), is_space));
-
-        return s;
-    }
-
     string reverseWords(string s) {
+        reverse(s.begin(), s.end());
+        string ans = "";
         
-        trim(s);
-        string result = "";
-        stringstream ss(s);
-        string chunk;
+        for(int i = 0; i < s.length(); i++){
+            string word = "";
 
-        while(ss >> chunk){
-            result = chunk + " " + result;
+            while(s[i] != ' ' && i < s.length()){
+                word += s[i];
+                i++;
+            }
+
+            reverse(word.begin(), word.end());
+            
+            if(word.length() > 0){
+                ans = ans + " " + word;
+            }
         }
 
-        if(!result.empty()){
-            result.pop_back();
-        }
+        ans.erase(0, 1);
 
-    return result;
+        return ans; 
     }
 };
