@@ -5,13 +5,10 @@ public:
         int partSize = needle.length();
 
         for(int i = 0; i < haystack.length(); i++){
-            int windSize = partSize;
-            int idx = i;
-
-            string windString = haystack.substr(idx, windSize);
+            string windString = haystack.substr(i, partSize);
 
             if(windString == needle){
-                return idx;
+                return i;
             }
             
         }
